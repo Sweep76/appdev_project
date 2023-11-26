@@ -3,13 +3,12 @@
 <br>
 
 <hr>
-### To run the project 
-#### npm init
-#### cd client
-#### npm run dev
+To run the project<br>
+1.npm init<br>
+2.cd client<br>
+3.npm run dev<br>
 
 
-<hr>
 
 ### dependencies installed
 <br>
