@@ -1,4 +1,10 @@
-client and Server
-
-client - will hold our frontend
+client - will hold our frontend 
 server - will be our express server
+
+
+dependencies installed
+
+### inside client folder
+npm install sass --save-dev
+npm install react-router-dom
+npm install react-icons

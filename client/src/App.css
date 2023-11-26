@@ -8,15 +8,15 @@
 }
 
 :root{
-  --primaryColor: hs1(94, 55%, 56%);
-  --hoverColor: hs1(93, 75%, 76%);
-  --paleGreen: hs1(96, 75%, 89%);
-  --whiteColor: hs1(0, 0%, 100%);
-  --blackColor: hs1(0, 0%, 18%);
-  --greyText: hs1(0, 0%, 75%);
-  --bgColor: hs1(113, 11%, 85%);
-  --inputColor: hs1(330, 12%, 97%);
-  --inputColor: hs1(154, 14%, 90%);
+  --primaryColor: hsl(94, 55%, 56%);
+  --hoverColor: hsl(93, 75%, 76%);
+  --paleGreen: hsl(96, 75%, 89%);
+  --whiteColor: hsl(0, 0%, 100%);
+  --blackColor: hsl(0, 0%, 18%);
+  --greyText: hsl(0, 0%, 75%);
+  --bgColor: hsl(113, 11%, 85%);
+  --inputColor: hsl(330, 12%, 97%);
+  --inputColor: hsl(154, 14%, 90%);
 
   /* Font and Typography */
 
@@ -88,6 +88,54 @@ img, video{
 .btn:hover{
   color: var(--primaryColor);
   background: var(--paleGreen);
+}
+
+
+/* Page Stylings */
+.loginPage{
+  height: 100vh;
+  width: 100%;
+  margin: auto;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 7px 50px rgb(39, 183, 23);
+
+  .container{
+      height: 75vh;
+      width: 60%;
+      margin: auto;
+      justify-content: space-between;
+      border-radius: 10px;
+      background: hsl(0, 0%, 91%);
+
+      .videoDiv{
+        position: relative;
+        display: flex;
+        flex-basis: 50%;
+        width: 70%;
+        height: 100%;
+        padding: 0 1.5rem;
+        text-align: center;
+        justify-content: center;
+        flex-direction: column;
+        margin: auto;
+        border-radius: 10px;
+        overflow: hidden;
+
+        video, footerDiv{
+          position: absolute;
+        }
+        video{
+            height: 100%;
+            width: 100%;
+            object-fit: cover;
+            top: 0;
+            bottom: 0;
+            right: 0;
+            left: 0;
+        }
+      }
+  }
 }
 
 
