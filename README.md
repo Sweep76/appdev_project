@@ -1,19 +1,60 @@
-### FrontEnd = ReactJs
-### BackEnd = NodeJs
-<br>
+# TASKIFY 3105 - MANAGEMENT TOOL  README
 
-<hr>
-To run the project<br>
-1.npm init<br>
-2.cd client<br>
-3.npm run dev<br>
+## Guide to using this webapp
 
+* Task Management App for Employees with searching index function
+* Organize Orders
 
+## Important Links
+1. [Wireframe Layouts](insertlink)
 
-### dependencies installed
-<br>
+### Setting Up the Project
+1. Clone the project in your local directory of choice. Example using the git CLI:
+```
+git clone https://github.com/Sweep76/appdev_project.git
+```
+
+2. CD into the root folder
+```
+cd appdev_project
+```
+3. CD into the client and server folder separately 
+```
+cd client (or) cd server
+```
+4. Install dependencies on each folder
+```
+npm install
+```
+5. dependencies used - client folder
+```
 npm install sass --save-dev
-<br>
 npm install react-router-dom
-<br>
 npm install react-icons
+npm install axios
+```
+6. dependencies used - server folder
+```
+npm init
+npm install mysql express cors
+```
+
+7. Run the project
+```
+npm run dev (in the client directory)
+npm index.js (in the server directory)
+```
+
+
+## Database Setup
+# Guide to installing the DB of taskify
+1. Import the "plantdb.sql" SQL file found outside the directory into phpmyadmin. NOTE THAT THIS IS A MUST
+
+## Commands to Run During Development
+
+1. Ensure that your XAMPP is running with the imported database and mySQL server running as well.
+2. Start your local front-end server
+```
+npm run dev (on client directory)
+node index.js (on server directory)
+```
