@@ -6,7 +6,7 @@
 * Organize Orders
 
 ## Important Links
-1. [Wireframe Layouts](insertlink)
+1. [Wireframe Layouts](https://www.canva.com/design/DAFviR_rW6U/mqIVP5XNTGd6a58WfAulXQ/edit)
 
 ### Setting Up the Project
 1. Clone the project in your local directory of choice. Example using the git CLI:
