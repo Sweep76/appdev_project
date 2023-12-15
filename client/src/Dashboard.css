@@ -1,0 +1,151 @@
+/* TaskApp.css */
+.task-app {
+  font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+  background-color: #f0f5f9;
+  border-radius: 5px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+h1 {
+  text-align: center;
+  color: #007bff;
+}
+
+.task-input {
+  display: flex;
+  margin-bottom: 10px;
+}
+
+.task-info {
+  display: flex;
+  align-items: center;
+  flex-grow: 1;
+}
+
+.task-info span {
+  margin-right: 10px;
+}
+
+.task-input input {
+  flex-grow: 1;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 3px;
+  outline: none;
+}
+
+.add-button {
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 3px;
+  padding: 10px 15px;
+  margin-left: 10px;
+  cursor: pointer;
+}
+
+.add-button:hover {
+  background-color: #0056b3;
+}
+
+.confirm-button,
+.cancel-button {
+background-color: #ff00c3;
+color: #fff;
+border: none;
+border-radius: 3px;
+padding: 5px 10px;
+margin-right: 5px;
+cursor: pointer;
+}
+
+.confirm-button:hover,
+.cancel-button:hover {
+background-color: #0056b3;
+}
+
+.task-list {
+  list-style: none;
+  padding: 0;
+}
+
+.task-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 50px;
+  background-color: #fff;
+  border: 1px solid #ccc;
+  border-radius: 3px;
+  margin-bottom: 10px;
+}
+
+.remove-button {
+  background-color: #dc3545;
+  color: #fff;
+  border: none;
+  border-radius: 3px;
+  padding: 5px 10px;
+  cursor: pointer;
+}
+
+.remove-button:hover {
+  background-color: #c82333;
+}
+
+/* TaskApp.css */
+
+/* ... (previous styles) ... */
+
+.edit-button {
+background-color: #ffc107;
+color: #000;
+border: none;
+border-radius: 3px;
+padding: 5px 10px;
+margin-right: 5px;
+cursor: pointer;
+}
+
+.edit-button:hover {
+background-color: #ffca2b;
+}
+
+.edit-mode {
+display: flex;
+align-items: center;
+margin-top: 10px;
+}
+
+.save-button {
+background-color: #28a745;
+color: #fff;
+border: none;
+border-radius: 3px;
+padding: 5px 10px;
+margin-right: 5px;
+cursor: pointer;
+}
+
+.save-button:hover {
+background-color: #1f9031;
+}
+
+input[type="date"] {
+padding: 8px;
+border: 1px solid #ccc;
+border-radius: 3px;
+outline: none;
+font-size: 14px;
+}
+
+/* Style for the date input when focused */
+input[type="date"]:focus {
+border-color: #007bff;
+box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+}
+
+/* ... (previous styles) ... */

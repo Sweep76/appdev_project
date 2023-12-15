@@ -1,10 +1,8 @@
+import { Link } from 'react-router-dom'; 
 import React, { useState, useEffect } from 'react';
-import '../../Dashboard.css';
-import '../../App.scss';
-import { Link, NavLink } from 'react-router-dom';
+import '../TaskApp.css'; //do it like this to import please lng joshua
 
-function Dashboard() {
-  // Initialize tasks from localStorage or an empty array
+function TaskApp() {
   const [tasks, setTasks] = useState(() => {
     const savedTasks = localStorage.getItem('tasks');
     return savedTasks ? JSON.parse(savedTasks) : [];
@@ -118,12 +116,6 @@ function Dashboard() {
     }
   }, []);
 
-  useEffect(() => {
-    // This effect will run when the component mounts (on initial load)
-    // and whenever the 'tasks' state changes.
-    localStorage.setItem('tasks', JSON.stringify(tasks));
-  }, [tasks]);
-
   return (
     <div className="task-app">
       <Link to="/">Go Back</Link>
@@ -197,4 +189,4 @@ function Dashboard() {
   );
 }
 
-export default Dashboard;
+export default TaskApp;
