@@ -24,8 +24,8 @@ const Login = () => {
         <video src={video} autoPlay muted loop></video> 
         
         <div className="textDiv">
-          <h2 className="title">Create and Sell Extraordinary Products</h2>
-          <p>Adopt the peace of nature! </p>
+          <h2 className="title">Task Manager</h2>
+          <p>Manage your time well! </p>
           <br></br>
           <div className="footerDiv flex">  
           <span className="text">Don't have an account?</span>

@@ -295,6 +295,8 @@ img, video{
   }
 }
 
+// DASHBOARD PAGE MODIFICATION
+
 .dashboard{
     height: 100vh;
     width: 100%;
@@ -307,6 +309,31 @@ img, video{
       border-radius: 10px;
       overflow: hidden;
       box-shadow: 0 5px 10px rgb(194, 194, 194);
+    }
+}
+
+//Media Queries
+@media screen and (max-width: 500px){
+  .heading{
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1rem;
+  }
+}
+
+@media screen and (max-width: 918px){
+  .heading{
+    flex-direction: row;
+    align-items: center;
+    gap: 1rem;
+  }
+}
+
+@media screen and (max-width: 990px){
+    .heading{
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 1rem;
     }
 }
 

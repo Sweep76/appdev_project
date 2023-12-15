@@ -126,7 +126,7 @@ function Dashboard() {
 
   return (
     <div className="task-app">
-      <Link to="/">Go Back</Link>
+      <Link to="/">Logout</Link>
       <h1>Task Management App</h1>
       <center>
       <p>Please input the calendar date and task name first before using the sort function</p>

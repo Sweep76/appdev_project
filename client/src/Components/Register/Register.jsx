@@ -1,7 +1,9 @@
-import React from 'react'
+import React, { useState } from 'react';
 //import './Login.css'
 import '../../App.scss'
-import {Link, NavLink} from 'react-router-dom'
+import { Link } from 'react-router-dom'
+import Axios from 'axios'
+
 
 //import our assets
 import video from '../../LoginAssets/video.mp4'
@@ -17,6 +19,26 @@ import { MdMarkEmailRead } from "react-icons/md";
 
 
 const Register = () => {
+  // UseState to hold our inputs
+  const [email, setEmail] = useState('')
+  const [username, setUserName] = useState('')
+  const [password, setPassword] = useState('')
+
+  // Onclick let us get what the user has entered
+  const createUser = () => {
+    // We shall require Axios to create an API that connects to the server
+    // Lets install it
+    Axios.post('http://localhost:3002/register', {
+        // create variable to send to the server through the route
+        Email: email,
+        UserName: username,
+        Password: password
+    }).then(() => {
+        console.log('User has been created')
+    })
+  }
+
+
   return (
     <div className="registerPage flex">
       <div className="container flex">
@@ -27,7 +49,7 @@ const Register = () => {
           
           <div className="textDiv">
             <h2 className="title">Register Page</h2>
-            <p>Adopt the peace of nature! </p>
+            <p>Manage your time well! </p>
             <br></br>
 
             <div className="footerDiv flex">  
@@ -53,7 +75,10 @@ const Register = () => {
               <label htmlFor="email">Email</label>
               <div className="input flex">
                 <MdMarkEmailRead className='icon'/> 
-                <input type="email" id='email' placeholder='Enter Email'/>
+                <input type="email" id='email' placeholder='Enter Email'
+                onChange={(event)=>{
+                  setEmail(event.target.value) //set email to whatever is typed in
+                }}/>
               </div>
             </div>
 
@@ -61,7 +86,10 @@ const Register = () => {
               <label htmlFor="username">Username</label>
               <div className="input flex">
                 <FaUserShield className='icon'/> 
-                <input type="text" id='username' placeholder='Enter Username'/>
+                <input type="text" id='username' placeholder='Enter Username'
+                onChange={(event)=>{
+                  setUserName(event.target.value) //set email to whatever is typed in
+                }}/>
               </div>
             </div>
 
@@ -69,11 +97,14 @@ const Register = () => {
               <label htmlFor="password">Password</label>
               <div className="input flex">
                 <BsFillShieldLockFill className='icon'/> 
-                <input type="password" id='password' placeholder='Enter Password'/>
+                <input type="password" id='password' placeholder='Enter Password'
+                onChange={(event)=>{
+                  setPassword(event.target.value) //set email to whatever is typed in
+                }}/>
               </div>
             </div>
 
-          <button type='submit' className='btn flex'>
+          <button type='submit' className='btn flex' onClick={createUser}>
             <span>Register </span>
             <AiOutlineSwapRight className='icon'/>
           </button>
