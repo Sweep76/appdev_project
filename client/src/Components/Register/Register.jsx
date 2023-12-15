@@ -17,11 +17,10 @@ import { AiOutlineSwapRight } from "react-icons/ai";
 import { MdMarkEmailRead } from "react-icons/md";
 
 
-
 const Register = () => {
   // UseState to hold our inputs
   const [email, setEmail] = useState('')
-  const [username, setUserName] = useState('')
+  const [userName, setUserName] = useState('')
   const [password, setPassword] = useState('')
 
   // Onclick let us get what the user has entered
@@ -31,7 +30,7 @@ const Register = () => {
     Axios.post('http://localhost:3002/register', {
         // create variable to send to the server through the route
         Email: email,
-        UserName: username,
+        UserName: userName,
         Password: password
     }).then(() => {
         console.log('User has been created')
@@ -77,7 +76,7 @@ const Register = () => {
                 <MdMarkEmailRead className='icon'/> 
                 <input type="email" id='email' placeholder='Enter Email'
                 onChange={(event)=>{
-                  setEmail(event.target.value) //set email to whatever is typed in
+                  setEmail(event.target.value) 
                 }}/>
               </div>
             </div>
@@ -88,7 +87,7 @@ const Register = () => {
                 <FaUserShield className='icon'/> 
                 <input type="text" id='username' placeholder='Enter Username'
                 onChange={(event)=>{
-                  setUserName(event.target.value) //set email to whatever is typed in
+                  setUserName(event.target.value) 
                 }}/>
               </div>
             </div>
@@ -99,7 +98,7 @@ const Register = () => {
                 <BsFillShieldLockFill className='icon'/> 
                 <input type="password" id='password' placeholder='Enter Password'
                 onChange={(event)=>{
-                  setPassword(event.target.value) //set email to whatever is typed in
+                  setPassword(event.target.value) 
                 }}/>
               </div>
             </div>

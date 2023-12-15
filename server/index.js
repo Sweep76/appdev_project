@@ -22,7 +22,6 @@ const db = mysql.createConnection({
 })
 
 // Let us now create a route to the server that will register a user.
-
 app.post('/register', (req, res) => {
     // we need to get the variables sent from the form
     const sentEmail = req.body.Email
@@ -44,8 +43,36 @@ app.post('/register', (req, res) => {
             console.log('User inserted successfully!')
             res.send({message: 'User added!'})
             // Let try and see
-            // user has not been submitted, we need to use express and cors
+            // this is possible through express and cors
         }
     })
 
+})
+
+// Now we need to login with these credentials from a registered user
+// Lets create another route
+app.post('/login', (req, res) => {
+     // we need to get the variables sent from the form
+
+     const sentloginUserName = req.body.LoginUserName
+     const sentLoginPassword = req.body.LoginPassword
+ 
+     // Lets create SQL statement to insert the user to the Database table Users
+     const SQL = 'SELECT * FROM users WHERE username = ? && password = ?'
+     // We are going to enter these values through a variable
+     const Values = [sentloginUserName, sentLoginPassword]
+
+     // Query to execute the sql statement above
+    db.query(SQL, Values, (err, results)=>{
+        if(err){
+            res.send({error: err})
+        }
+        if(results.length > 0){
+            res.send(results)
+        }
+        else{
+            res.send({message: `Credentials Don't match!`})
+            // This should be good, Lets try to login.
+        }
+    })
 })
