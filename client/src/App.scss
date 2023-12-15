@@ -16,7 +16,6 @@
   --greyText: hsl(0, 0%, 75%);
   --bgColor: hsl(113, 11%, 85%);
   --inputColor: hsl(330, 12%, 97%);
-  --inputColor: hsl(154, 14%, 90%);
 
   /* Font and Typography */
 
@@ -69,6 +68,15 @@ img, video{
 .showMessage{
   display: block;
   color: var(--whiteColor);
+  padding: 10px;
+  background: red;
+  border-radius: 3px;
+  text-align: center;
+}
+
+.showMessage{
+  display: block;
+  color: var(--whiteColor);
   background: red;
   border-radius: 3px;
   text-align: center;
@@ -93,7 +101,7 @@ img, video{
 
 
 /* Page Stylings */
-.loginPage{
+.loginPage, .registerPage{
   height: 100vh;
   width: 100%;
   margin: auto;
@@ -158,8 +166,8 @@ img, video{
             padding: 0 1rem;
             height: 60px;
             background: rgba(255, 255, 255, 0.248);
-            left: 0;
-            right: 0;
+            left: 10px;
+            right: 10px;
             justify-content: space-between;
             backdrop-filter: blur(1px);
             border-radius: 10px;
@@ -185,6 +193,104 @@ img, video{
             }
         }
 
+      }
+
+      .formDiv{
+        flex-basis: 50%;
+        margin: auto;
+        flex-direction: column;
+        gap: 1.5rem;
+        transform: translate(-1rem);
+
+        .headerDiv{
+            text-align: center;
+            padding: 1.5rem 0;
+
+            img{
+                width: 100px;
+                padding-bottom: .5rem;
+            }
+
+            h1{
+                font-size: 25px;
+                color: var(--blackColor);
+                font-weight: 600;
+            }  
+        }
+
+        .form{
+            gap: 1rem;
+
+            .inputDiv{
+                .icon{
+                    color: var(--greyText);
+                }
+
+                input{
+                    background: none;
+                    outline: none;
+                    border: none;
+                    width: 200px;
+                }
+
+                label{
+                    color: var(--blackColor);
+                    font-weight: 400;
+                    font-size: 14px;
+                    padding: .5rem 0;
+                    display: block;
+                }
+
+                .input{
+                    gap: .5rem;
+                    padding: 1rem;
+                    background: var(--inputColor);
+                    border-radius: 10px;
+                }
+
+            }
+            
+            .btn{
+              padding: .8rem;
+              background: var(--primaryColor);
+              border-radius: 10px;
+              color: var(--whiteColor);
+              align-items: center;
+              justify-content: center;
+              font-size: 16px;
+              width: 100%;
+              gap: .5rem;
+              transition: .3s ease;
+
+              .icon{
+                  font-size: 25px;
+                  transition: .3s ease;
+              }
+
+              &:hover{
+                  background: var(--hoverColor);
+                  color: var(--blackColor);
+
+                  .icon{
+                      color:var(--blackColor);
+                      transform: translateX(5px);
+                  }
+              }
+            }
+            
+            .forgotPassword{
+                font-size: 13px;
+                color: var(--blackColor);
+                opacity: .7;
+                text-align: center;
+
+                a{
+                    text-decoration: underline;
+                    cursor: pointer;
+                }
+            }
+
+        }
       }
   }
 }

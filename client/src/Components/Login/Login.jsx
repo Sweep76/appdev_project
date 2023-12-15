@@ -1,7 +1,7 @@
 import React from 'react'
 import './Login.css'
 import '../../App.scss'
-import {Link } from 'react-router-dom'
+import {Link, NavLink} from 'react-router-dom'
 
 import video from '../../LoginAssets/video.mp4'
 import logo from '../../LoginAssets/logo.png'
@@ -47,11 +47,11 @@ const Login = () => {
       <div className="formDiv flex">
         <div className="headerDiv">
           <img src={logo} alt="Logo Image" />
-          <h3>Welcome Back!</h3>
+          <h1>Welcome Back!</h1>
         </div>
 
         <form action="" className='form grid'>
-          <span>Login Status will go here</span>
+          <span className='showMessage'>Login Status will go here</span>
 
           <div className="inputDiv">
             <label htmlFor="username">Username</label>
@@ -64,7 +64,7 @@ const Login = () => {
           <div className="inputDiv">
             <label htmlFor="password">Password</label>
             <div className="input flex">
-              <FaUserShield className='icon'/> 
+              <BsFillShieldLockFill className='icon'/> 
               <input type="password" id='password' placeholder='Enter Password'/>
             </div>
           </div>
