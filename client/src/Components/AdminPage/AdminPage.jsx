@@ -1,6 +1,7 @@
 // AdminPage.jsx
 import React, { useState, useEffect } from 'react';
 import Axios from 'axios';
+import {Link, useNavigate} from 'react-router-dom'
 import './AdminPage.css'; // Import the CSS file
 
 const AdminPage = () => {
@@ -27,6 +28,7 @@ const AdminPage = () => {
   return (
     <div className="admin-page">
       <h2>User Management</h2>
+      <Link to="/">Logout</Link>
       <table className="user-table">
         <thead>
           <tr>
