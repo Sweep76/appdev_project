@@ -76,3 +76,19 @@ app.post('/login', (req, res) => {
         }
     })
 })
+
+// Backend for Admin privilges
+
+app.get('/users', (req, res) => {
+    const SQL = 'SELECT * FROM users';
+  
+    db.query(SQL, (err, results) => {
+      if (err) {
+        res.status(500).send({ error: 'Error fetching users from the database' });
+        return;
+      }
+  
+      res.send(results);
+    });
+  });
+  

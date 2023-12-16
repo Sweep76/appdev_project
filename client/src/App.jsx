@@ -1,4 +1,5 @@
 import './App.scss'
+import AdminPage from './Components/AdminPage/AdminPage'
 import Dashboard from './Components/Dashboard/Dashboard'
 import Login from './Components/Login/Login'
 import Register from './Components/Register/Register'
@@ -8,7 +9,7 @@ import {
   RouterProvider
 } from 'react-router-dom'
 
-//router creation
+//router creation 
 
 const router = createBrowserRouter([
   {
@@ -22,6 +23,10 @@ const router = createBrowserRouter([
   {
     path: '/dashboard',
     element: <div><Dashboard/></div>
+  },
+  {
+    path: '/admin',
+    element: <div><AdminPage/></div>
   },
 ])
 

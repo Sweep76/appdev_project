@@ -28,6 +28,7 @@ npm install
 ```
 5. dependencies used - client folder
 ```
+npm init
 npm install sass --save-dev
 npm install react-router-dom
 npm install react-icons
