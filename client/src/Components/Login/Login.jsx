@@ -1,4 +1,4 @@
-import React, {useState} from 'react'
+import React, {useEffect, useState} from 'react'
 import './Login.css'
 import '../../App.scss'
 import {Link, useNavigate} from 'react-router-dom'
@@ -16,10 +16,17 @@ import { AiOutlineSwapRight } from "react-icons/ai";
 
 
 const Login = () => {
+
+
   // Usestate Hook to store inputs
   const [loginUserName, setLoginUserName] = useState('')
   const [loginPassword, setLoginPassword] = useState('')
   const navigateTo = useNavigate()
+
+  // Let us show the message to the user
+  const [loginStatus, setLoginStatus] = useState('')
+  const [statusHolder, setstatusHolder] = useState('message')
+
 
   // Onclick let us get what the user has entered
   const loginUser = (e) => {
@@ -34,15 +41,33 @@ const Login = () => {
     }).then((response) => {
         console.log()
         // I want to catch the response first - We have data successfully from the database
-      if(response.data.message){
+      if(response.data.message || loginUserName == '' || loginPassword == ''){
         // if credential dont match
         navigateTo('/') // so we shall navigate to the same login page
+        setLoginStatus(`Credentials Don't Exist!`)
       }
       else{
         navigateTo('/dashboard') // if the credentials match, user goes to dashboard
       }
     })
-  }  
+  } 
+  
+  useEffect(() => {
+    if(loginStatus !== ''){
+      setstatusHolder('showMessage') // show message
+      setTimeout(() => {
+        setstatusHolder('message') // hide if after 4000ms or 4s
+    }, 4000);
+  }
+  }, [loginStatus])
+
+
+
+// Lets clear the form on submit
+  const onSubmit = () => {
+    setLoginUserName('')
+    setLoginPassword('')
+  }
 
   return (
     <div className="loginPage flex">
@@ -79,8 +104,8 @@ const Login = () => {
           <h1>Welcome Back!</h1>
         </div>
 
-        <form action="" className='form grid'>
-          {/* <span className='message'>Login Status will go here</span> */}
+        <form className='form grid' onSubmit={onSubmit}>
+          <span className={statusHolder}>{loginStatus}</span>
 
           <div className="inputDiv">
             <label htmlFor="username">Username</label>
@@ -109,7 +134,6 @@ const Login = () => {
           <AiOutlineSwapRight className='icon'/>
         </button>
 
-        <a href='/dashboard'>Dashboard</a>
 
         <span className='forgotPassword'>
           Forgot Password? <a href=''>Click Here</a>

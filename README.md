@@ -37,6 +37,7 @@ npm install axios
 ```
 npm init
 npm install mysql express cors
+npm install jsonwebtoken
 ```
 
 7. Run the project
