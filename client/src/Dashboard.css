@@ -75,7 +75,7 @@ h1 {
 .task-actions {
   display: flex;
   flex-direction: column; /* Stack the buttons in a column */
-  align-items: flex-end; /* Align buttons to the end */
+  align-items: flex-end; /* Aligns thr buttons to the end */
 }
 
 /* Style for the date input when focused */
@@ -162,7 +162,7 @@ h1 {
   border: 1px solid #CBD5C0; /* Use a muted green for the input border */
   border-radius: 3px;
   outline: none;
-  margin-right: 5px; /* Adjust as needed */
+  margin-right: 5px; 
 }
 
 /* Style for the sort controls select element */
@@ -185,9 +185,6 @@ h1 {
   background-color: #758467; /* Darken the button on hover */
 }
 
-/* Rest of the existing styles for buttons and inputs */
-
-
 .sidebar-toggle {
   position: absolute;
   top: 10px;
@@ -206,7 +203,7 @@ h1 {
   background-color: #758467;
   border-radius: 10px;
   color: white;
-  padding-top: 50px; /* Adjust as needed */
+  padding-top: 50px; 
   box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
   transform: translateX(-100%);
   transition: transform 0.3s cubic-bezier(0.68, -0.55, 0.27, 1.55); 

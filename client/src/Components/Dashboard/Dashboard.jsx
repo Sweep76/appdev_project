@@ -148,7 +148,7 @@ function Dashboard() {
         <center>
         {/* <p>Please input the calendar date and task name first before using the sort function</p> */}
         </center>
-          <div className="task-input">
+          <div className="task-input"> {/*this is where the task name input goes*/}
             <input
               type="text"
               placeholder="Add a new task"
@@ -176,7 +176,7 @@ function Dashboard() {
                 </button>
               </div>
             </div>
-          <ul className="task-list">
+          <ul className="task-list"> {/* this section shows the list of available tasks */}
           {filteredTasks.map((task, index) => (
             <li className="task-item" key={index}>
               <div className="task-info">
