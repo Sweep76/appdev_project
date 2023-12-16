@@ -1,45 +1,41 @@
-/* TaskApp.css */
+/* Dashboard.css */
+.app {
+  display: flex;
+  flex-direction: column;
+  background-color: beige;
+  height: 100vh;
+}
+
 .task-app {
-  font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-  max-width: 800px;
-  margin: 0 auto;
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  width: 1000px;
+  margin: 60px auto;
+  height: 650px;
   padding: 20px;
-  background-color: #f0f5f9;
-  border-radius: 5px;
+  background-color: #DFE6DA; /* Use the lightest color for the background */
+  border-radius: 10px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  position: relative;
 }
 
 h1 {
   text-align: center;
-  color: #007bff;
-}
-
-.task-input {
-  display: flex;
-  margin-bottom: 10px;
-}
-
-.task-info {
-  display: flex;
-  align-items: center;
-  flex-grow: 1;
-}
-
-.task-info span {
-  margin-right: 10px;
+  color: #758467; /* Use a muted green for the header */
 }
 
 .task-input input {
   flex-grow: 1;
   padding: 10px;
-  border: 1px solid #ccc;
+  border: 1px solid #CBD5C0; /* Use a muted green for the input border */
   border-radius: 3px;
   outline: none;
+  width: 400px;
+  margin: 20px 5px;
 }
 
 .add-button {
-  background-color: #007bff;
-  color: #fff;
+  background-color: #819171; /* Use a darker green for the add button */
+  color: #DFE6DA; /* Use the lightest color for the text on the button */
   border: none;
   border-radius: 3px;
   padding: 10px 15px;
@@ -48,44 +44,50 @@ h1 {
 }
 
 .add-button:hover {
-  background-color: #0056b3;
-}
-
-.confirm-button,
-.cancel-button {
-background-color: #ff00c3;
-color: #fff;
-border: none;
-border-radius: 3px;
-padding: 5px 10px;
-margin-right: 5px;
-cursor: pointer;
-}
-
-.confirm-button:hover,
-.cancel-button:hover {
-background-color: #0056b3;
+  background-color: #758467; /* Darken the button on hover */
 }
 
 .task-list {
   list-style: none;
   padding: 0;
+  max-height: 400px; /* Set a max height for the task-list */
+  overflow-y: auto; 
 }
 
 .task-item {
   display: flex;
   justify-content: space-between;
-  align-items: center;
-  padding: 50px;
-  background-color: #fff;
-  border: 1px solid #ccc;
-  border-radius: 3px;
-  margin-bottom: 10px;
+  align-items: flex-start; /* Align items to the start */
+  padding: 20px;
+  background-color: #CBD5C0;
+  border: 1px solid #819171;
+  border-radius: 5px;
+  margin: 20px;
 }
 
+.task-info {
+  display: flex;
+  flex-direction: column; /* Stack the elements in a column */
+  align-items: flex-start; /* Align items to the start */
+  margin-right: 10px; /* Add margin to separate from action buttons */
+}
+
+.task-actions {
+  display: flex;
+  flex-direction: column; /* Stack the buttons in a column */
+  align-items: flex-end; /* Align buttons to the end */
+}
+
+/* Style for the date input when focused */
+.task-info input[type="date"]:focus {
+  border-color: #758467; /* Change color when focused */
+  box-shadow: 0 0 5px rgba(117, 132, 103, 0.5); /* Add a subtle box shadow when focused */
+}
+
+
 .remove-button {
-  background-color: #dc3545;
-  color: #fff;
+  background-color: #fa4545; /* Use the lightest color for the remove button */
+  color: black; /* Use a muted green for the text on the button */
   border: none;
   border-radius: 3px;
   padding: 5px 10px;
@@ -93,53 +95,139 @@ background-color: #0056b3;
 }
 
 .remove-button:hover {
-  background-color: #c82333;
+  background-color: #7b1313; /* Darken the button on hover */
+  color:white;
 }
 
-/* TaskApp.css */
-
-/* ... (previous styles) ... */
-
 .edit-button {
-background-color: #ffc107;
-color: #000;
-border: none;
-border-radius: 3px;
-padding: 5px 10px;
-margin-right: 5px;
-cursor: pointer;
+  background-color: #9CAF88; /* Use a brighter green for the edit button */
+  color: #DFE6DA; /* Use the lightest color for the text on the button */
+  border: none;
+  border-radius: 3px;
+  padding: 5px 10px;
+  margin: 10px 5px;
+  cursor: pointer;
 }
 
 .edit-button:hover {
-background-color: #ffca2b;
-}
-
-.edit-mode {
-display: flex;
-align-items: center;
-margin-top: 10px;
+  background-color: #758467; /* Darken the button on hover */
 }
 
 .save-button {
-background-color: #28a745;
-color: #fff;
-border: none;
-border-radius: 3px;
-padding: 5px 10px;
-margin-right: 5px;
-cursor: pointer;
+  background-color: #758467; /* Use a muted green for the save button */
+  color: #CBD5C0; /* Use a muted green for the text on the button */
+  border: none;
+  border-radius: 3px;
+  padding: 5px 10px;
+  margin:  10px 5px;
+  cursor: pointer;
 }
 
 .save-button:hover {
-background-color: #1f9031;
+  background-color: #6b795d; /* Darken the button on hover */
+  color: white;
 }
 
-input[type="date"] {
-padding: 8px;
-border: 1px solid #ccc;
-border-radius: 3px;
-outline: none;
-font-size: 14px;
+.cancel-button {
+  background-color: #ff6961; /* Use a muted green for the save button */
+  color: white; /* Use a muted green for the text on the button */
+  border: none;
+  border-radius: 3px;
+  padding: 5px 10px;
+  margin:  0 5px 10px;
+  cursor: pointer;
+}
+
+.cancel-button:hover {
+  background-color: #f75048; /* Darken the button on hover */
+  color: white;
+}
+
+.task-controls {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px; /* Add margin to separate from the task list */
+}
+
+.search-input,
+.sort-controls {
+  display: flex;
+  align-items: center;
+}
+
+.search-input input,
+.sort-controls select {
+  padding: 10px;
+  border: 1px solid #CBD5C0; /* Use a muted green for the input border */
+  border-radius: 3px;
+  outline: none;
+  margin-right: 5px; /* Adjust as needed */
+}
+
+/* Style for the sort controls select element */
+.sort-controls select {
+  background-color: #DFE6DA; /* Use the lightest color for the background */
+  color: #758467; /* Use a muted green for the text color */
+}
+
+/* Style for the sort controls button element */
+.sort-controls button {
+  background-color: #819171; /* Use a darker green for the button background */
+  color: #DFE6DA; /* Use the lightest color for the text color */
+  border: none;
+  border-radius: 3px;
+  padding: 10px 15px;
+  cursor: pointer;
+}
+
+.sort-controls button:hover {
+  background-color: #758467; /* Darken the button on hover */
+}
+
+/* Rest of the existing styles for buttons and inputs */
+
+
+.sidebar-toggle {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  font-size: 20px;
+  cursor: pointer;
+  border: none;
+}
+
+.sidebar {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 200px;
+  height: 100%;
+  background-color: #758467;
+  border-radius: 10px;
+  color: white;
+  padding-top: 50px; /* Adjust as needed */
+  box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+  transform: translateX(-100%);
+  transition: transform 0.3s cubic-bezier(0.68, -0.55, 0.27, 1.55); 
+  padding: 60px 15px;
+}
+
+.sidebar-open {
+  transform: translateX(0);
+}
+
+.sidebar a {
+  display: block;
+  padding: 10px;
+  color: white;
+  text-decoration: none;
+  transition: background-color 0.3s ease-in-out;
+}
+
+.sidebar a:hover {
+  background-color: #9CAF88;
+  width: auto;
 }
 
 /* Style for the date input when focused */
@@ -147,5 +235,3 @@ input[type="date"]:focus {
 border-color: #007bff;
 box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
 }
-
-/* ... (previous styles) ... */

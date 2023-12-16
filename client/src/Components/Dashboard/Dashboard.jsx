@@ -1,9 +1,15 @@
+/* eslint-disable no-unused-vars */
 import React, { useState, useEffect } from 'react';
 import '../../Dashboard.css';
 import '../../App.scss';
 import { Link, NavLink } from 'react-router-dom';
 
 function Dashboard() {
+  const [isSidebarOpen, setIsSidebarOpen] = useState(false);
+
+  const toggleSidebar = () => {
+    setIsSidebarOpen(!isSidebarOpen);
+  };
   // Initialize tasks from localStorage or an empty array
   const [tasks, setTasks] = useState(() => {
     const savedTasks = localStorage.getItem('tasks');
@@ -125,74 +131,112 @@ function Dashboard() {
   }, [tasks]);
 
   return (
-    <div className="task-app">
-      <Link to="/">Logout</Link>
-      <h1>Task Management App</h1>
-      <center>
-      <p>Please input the calendar date and task name first before using the sort function</p>
-      </center>
-      <div className="task-input">
-        <input
-          type="text"
-          placeholder="Add a new task"
-          value={newTask}
-          onChange={(e) => setNewTask(e.target.value)}
-        />
-        <button className="add-button" onClick={addTask}>Add Task</button>
-        <select value={selectedSortOption} onChange={handleSortOptionChange}>
-          <option value="date">Sort by Date</option>
-          <option value="alphabetical">Sort Alphabetically</option>
-        </select>
-        <button className="sort-button" onClick={handleSort}>Sort</button>
-      </div>
-      <div className="search-input">
-        <input
-          type="text"
-          placeholder="Search tasks"
-          value={searchQuery}
-          onChange={(e) => setSearchQuery(e.target.value)}
-        />
-      </div>
-      <ul className="task-list">
-        {filteredTasks.map((task, index) => (
-          <li className="task-item" key={index}>
-            <div className="task-info">
-              {editingIndex === index ? (
-                <textarea
-                  rows="4"
-                  value={editedTask}
-                  onChange={(e) => setEditedTask(e.target.value)}
+    <div className="app">
+      <div className="task-app">
+      <button className="sidebar-toggle" onClick={toggleSidebar}>
+        ☰
+      </button>
+        {isSidebarOpen && (
+          <div className="sidebar">
+            <h3>Welcome!</h3>
+            <NavLink to="/" onClick={() => setIsSidebarOpen(false)}>
+              Logout
+            </NavLink>
+          </div>
+        )}
+        <h1>Modern Foliage Taskify</h1>
+        <center>
+        {/* <p>Please input the calendar date and task name first before using the sort function</p> */}
+        </center>
+          <div className="task-input">
+            <input
+              type="text"
+              placeholder="Add a new task"
+              value={newTask}
+              onChange={(e) => setNewTask(e.target.value)}
+            />
+            <button className="add-button" onClick={addTask}>Add Task</button>
+            <br></br>
+            <div className="task-controls">
+              <div className="search-input">
+                <input
+                  type="text"
+                  placeholder="Search tasks"
+                  value={searchQuery}
+                  onChange={(e) => setSearchQuery(e.target.value)}
                 />
-              ) : (
-                <span>{task}</span>
-              )}
-              <input
-                type="date"
-                value={taskDeadlines[index] || ''}
-                onChange={(e) => setDeadline(index, e.target.value)}
-              />
+              </div>
+              <div className="sort-controls">
+                <select value={selectedSortOption} onChange={handleSortOptionChange}>
+                  <option value="date">Sort by Date</option>
+                  <option value="alphabetical">Sort Alphabetically</option>
+                </select>
+                <button className="sort-button" onClick={handleSort}>
+                  Sort
+                </button>
+              </div>
             </div>
-            <div className="task-actions">
-              {editingIndex !== index ? (
-                <button className="edit-button" onClick={() => enterEditMode(index)}>Edit</button>
-              ) : (
-                <>
-                  <button className="save-button" onClick={() => saveTask(index)}>Save</button>
-                  <button className="cancel-button" onClick={() => setEditingIndex(null)}>Cancel</button>
-                </>
-              )}
-              {confirmDeleteIndex === index ? (
+          <ul className="task-list">
+          {filteredTasks.map((task, index) => (
+            <li className="task-item" key={index}>
+              <div className="task-info">
                 <div>
-                  <button className="confirm-button" onClick={() => removeTask(index)}>Confirm</button>
-                  <button className="cancel-button" onClick={cancelDelete}>Cancel</button>
+                  {editingIndex === index ? (
+                    <textarea
+                      rows="4"
+                      value={editedTask}
+                      onChange={(e) => setEditedTask(e.target.value)}
+                    />
+                  ) : (
+                    <span>{task}</span>
+                  )}
                 </div>
-              ) : (
-                <button className="remove-button" onClick={() => removeTask(index)}>Remove</button>
-              )}
-            </div>
-          </li>
-        ))}
-      </ul>
+                <div>
+                  <input
+                    type="date"
+                    value={taskDeadlines[index] || ''}
+                    onChange={(e) => setDeadline(index, e.target.value)}
+                  />
+                </div>
+              </div>
+              <div className="task-actions">
+                {editingIndex !== index ? (
+                  <button className="edit-button" onClick={() => enterEditMode(index)}>
+                    Edit
+                  </button>
+                ) : (
+                  <>
+                    <button className="save-button" onClick={() => saveTask(index)}>
+                      Save
+                    </button>
+                    <button
+                      className="cancel-button"
+                      onClick={() => setEditingIndex(null)}
+                    >
+                      Cancel
+                    </button>
+                  </>
+                )}
+                {confirmDeleteIndex === index ? (
+                  <div>
+                    <button className="confirm-button" onClick={() => removeTask(index)}>
+                      Confirm
+                    </button>
+                    <button className="cancel-button" onClick={cancelDelete}>
+                      Cancel
+                    </button>
+                  </div>
+                ) : (
+                  <button className="remove-button" onClick={() => removeTask(index)}>
+                    Remove
+                  </button>
+                )}
+              </div>
+            </li>
+          ))}
+          </ul>
+        </div>
+      </div>
     </div>
   );
 }
