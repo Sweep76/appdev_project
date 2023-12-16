@@ -46,6 +46,9 @@ const Login = () => {
         navigateTo('/') // so we shall navigate to the same login page
         setLoginStatus(`Credentials Don't Exist!`)
       }
+      if(response.data.message || loginUserName == 'admin@gmail.com' || loginPassword == 'admin'){
+        navigateTo('/admin')
+      }
       else{
         navigateTo('/dashboard') // if the credentials match, user goes to dashboard
       }
