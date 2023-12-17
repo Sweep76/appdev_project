@@ -41,13 +41,12 @@ const Login = () => {
     }).then((response) => {
         console.log()
         // I want to catch the response first - We have data successfully from the database
-      if(response.data.message || loginUserName == 'admin@gmail.com' || loginPassword == 'admin'){
-          navigateTo('/admin') // so we shall navigate to the same login page
-      }
       if(response.data.message || loginUserName == '' || loginPassword == ''){
-        // if credential dont match
-        navigateTo('/') // so we shall navigate to the same login page
-        setLoginStatus(`Credentials Don't Exist!`)
+          navigateTo('/') // reverts back to loginpage if credentials dont exist omg slayy
+          setLoginStatus(`Credentials Don't Exist!`)
+      } else if(loginUserName === 'admin' && loginPassword === 'admin'){
+        // if credentials are admin only
+        navigateTo('/admin') // go to admin page
       }
       else{
         navigateTo('/dashboard') // if the credentials match, user goes to dashboard
@@ -136,8 +135,6 @@ const Login = () => {
           <span>Login </span>
           <AiOutlineSwapRight className='icon'/>
         </button>
-
-        <a href='/admin'>Admin</a>
 
         <span className='forgotPassword'>
           Forgot Password? <a href=''>Click Here</a>
