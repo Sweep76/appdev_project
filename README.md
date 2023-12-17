@@ -33,6 +33,7 @@ npm install sass --save-dev
 npm install react-router-dom
 npm install react-icons
 npm install axios
+npm install react-modal
 ```
 6. dependencies used - server folder
 ```

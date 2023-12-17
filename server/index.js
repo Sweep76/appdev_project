@@ -17,7 +17,7 @@ app.listen(3002, () => {
 const db = mysql.createConnection({
     user: 'root',
     host: 'localhost',
-    password: '', // If you have set xampp password please enter it here
+    password: '', 
     database: 'plantdb',
 })
 
@@ -94,10 +94,10 @@ app.get('/users', (req, res) => {
 
   app.put('/users/:id', (req, res) => {
     const userId = req.params.id;
-    const { email, username } = req.body;
+    const { email, username, password } = req.body;
   
-    const SQL = 'UPDATE users SET email=?, username=? WHERE id=?';
-    const values = [email, username, userId];
+    const SQL = 'UPDATE users SET email=?, username=?, password=? WHERE id=?';
+    const values = [email, username, password, userId];
   
     db.query(SQL, values, (err, result) => {
       if (err) {
@@ -105,11 +105,11 @@ app.get('/users', (req, res) => {
         res.status(500).send({ error: 'Error updating user' });
       } else {
         res.send({ message: 'User updated successfully' });
+        console.log('User updated successfully!')
       }
     });
   });
 
-  // Assuming you have these routes in your backend
 
 app.delete('/users/:id', (req, res) => {
     const userId = req.params.id;

@@ -1,14 +1,18 @@
-// AdminPage.jsx
 import React, { useState, useEffect } from 'react';
 import Axios from 'axios';
 import { Link } from 'react-router-dom';
+import Modal from 'react-modal'; // Import the Modal component
 import './AdminPage.css';
+
+Modal.setAppElement('#root'); // Set the root element for accessibility
 
 const AdminPage = () => {
   const [users, setUsers] = useState([]);
   const [editUserId, setEditUserId] = useState(null);
   const [editedEmail, setEditedEmail] = useState('');
   const [editedUsername, setEditedUsername] = useState('');
+  const [editedPassword, setEditedPassword] = useState('');
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   useEffect(() => {
     Axios.get('http://localhost:3002/users')
@@ -20,23 +24,31 @@ const AdminPage = () => {
       });
   }, []);
 
-  const handleEdit = (userId) => {
+  const openModal = (userId) => {
     setEditUserId(userId);
 
     const selectedUser = users.find((user) => user.id === userId);
 
     setEditedEmail(selectedUser.email);
     setEditedUsername(selectedUser.username);
+    setEditedPassword(selectedUser.password);
+
+    setIsModalOpen(true);
+  };
+
+  const closeModal = () => {
+    setIsModalOpen(false);
+    setEditUserId(null);
+    setEditedEmail('');
+    setEditedUsername('');
+    setEditedPassword('');
   };
 
   const saveEdit = () => {
-    console.log('Editing user with ID:', editUserId);
-    console.log('New email:', editedEmail);
-    console.log('New username:', editedUsername);
-
     Axios.put(`http://localhost:3002/users/${editUserId}`, {
       email: editedEmail,
       username: editedUsername,
+      password: editedPassword,
     })
       .then((response) => {
         console.log('User updated successfully:', response.data);
@@ -44,7 +56,7 @@ const AdminPage = () => {
         setUsers((prevUsers) =>
           prevUsers.map((user) =>
             user.id === editUserId
-              ? { ...user, email: editedEmail, username: editedUsername }
+              ? { ...user, email: editedEmail, username: editedUsername, password: editedPassword }
               : user
           )
         );
@@ -53,9 +65,7 @@ const AdminPage = () => {
         console.error('Error updating user:', error);
       })
       .finally(() => {
-        setEditUserId(null);
-        setEditedEmail('');
-        setEditedUsername('');
+        closeModal();
       });
   };
 
@@ -81,6 +91,7 @@ const AdminPage = () => {
             <th>ID</th>
             <th>Email</th>
             <th>Username</th>
+            <th>Password</th>
             <th>Action</th>
           </tr>
         </thead>
@@ -88,46 +99,51 @@ const AdminPage = () => {
           {users.map((user) => (
             <tr key={user.id}>
               <td>{user.id}</td>
+              <td>{user.email}</td>
+              <td>{user.username}</td>
+              <td>{user.password}</td>
               <td>
-                {editUserId === user.id ? (
-                  <input
-                    type="text"
-                    value={editedEmail}
-                    onChange={(e) => setEditedEmail(e.target.value)}
-                  />
-                ) : (
-                  user.email
-                )}
-              </td>
-              <td>
-                {editUserId === user.id ? (
-                  <input
-                    type="text"
-                    value={editedUsername}
-                    onChange={(e) => setEditedUsername(e.target.value)}
-                  />
-                ) : (
-                  user.username
-                )}
-              </td>
-              <td>
-                {editUserId === user.id ? (
-                  <button onClick={saveEdit}>Save</button>
-                ) : (
-                  <>
-                    <button className="edit-btn" onClick={() => handleEdit(user.id)}>
-                      Edit
-                    </button>
-                    <button className="delete-btn" onClick={() => handleDelete(user.id)}>
-                      Delete
-                    </button>
-                  </>
-                )}
+                <button className="edit-btn" onClick={() => openModal(user.id)}>
+                  Edit
+                </button>
+                <button className="delete-btn" onClick={() => handleDelete(user.id)}>
+                  Delete
+                </button>
               </td>
             </tr>
           ))}
         </tbody>
       </table>
+
+      {/* Modal for Editing User Credentials */}
+      <Modal
+        isOpen={isModalOpen}
+        onRequestClose={closeModal}
+        contentLabel="Edit User Modal"
+        className="edit-modal"
+      >
+        <h3>Edit User</h3>
+        <label>Email:</label>
+        <input
+          type="text"
+          value={editedEmail}
+          onChange={(e) => setEditedEmail(e.target.value)}
+        />
+        <label>Username:</label>
+        <input
+          type="text"
+          value={editedUsername}
+          onChange={(e) => setEditedUsername(e.target.value)}
+        />
+        <label>Password:</label>
+        <input
+          type="text"
+          value={editedPassword}
+          onChange={(e) => setEditedPassword(e.target.value)}
+        />
+        <button onClick={saveEdit}>Save</button>
+        <button onClick={closeModal}>Cancel</button>
+      </Modal>
     </div>
   );
 };
