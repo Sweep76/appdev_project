@@ -44,7 +44,7 @@ npm install jsonwebtoken
 7. Run the project
 ```
 npm run dev (in the client directory)
-npm index.js (in the server directory)
+node index.js (in the server directory)
 ```
 
 
