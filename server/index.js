@@ -77,7 +77,7 @@ app.post('/login', (req, res) => {
     })
 })
 
-// Backend for Admin privilges
+// Backend for Admin privilges for Edit and Deletion of Users
 
 app.get('/users', (req, res) => {
     const SQL = 'SELECT * FROM users';
@@ -108,4 +108,23 @@ app.get('/users', (req, res) => {
       }
     });
   });
+
+  // Assuming you have these routes in your backend
+
+app.delete('/users/:id', (req, res) => {
+    const userId = req.params.id;
+  
+    const SQL = 'DELETE FROM users WHERE id=?';
+    const values = [userId];
+  
+    db.query(SQL, values, (err, result) => {
+      if (err) {
+        console.error('Error deleting user:', err);
+        res.status(500).send({ error: 'Error deleting user' });
+      } else {
+        res.send({ message: 'User deleted successfully' });
+      }
+    });
+  });
+  
   
