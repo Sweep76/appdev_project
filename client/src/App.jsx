@@ -3,6 +3,7 @@ import AdminPage from './Components/AdminPage/AdminPage'
 import Dashboard from './Components/Dashboard/Dashboard'
 import Login from './Components/Login/Login'
 import Register from './Components/Register/Register'
+import AdminTask from './Components/AdminPage/AdminTask'
 
 import {
   createBrowserRouter,
@@ -27,6 +28,10 @@ const router = createBrowserRouter([
   {
     path: '/admin',
     element: <div><AdminPage/></div>
+  },
+  {
+    path: '/admintask',
+    element: <div><AdminTask/></div>
   },
 ])
 

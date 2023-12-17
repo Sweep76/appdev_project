@@ -85,6 +85,7 @@ const AdminPage = () => {
     <div className="admin-page">
       <h2>User Management</h2>
       <Link to="/">Logout</Link>
+      <a href='/admintask'> || Tasks</a>
       <table className="user-table">
         <thead>
           <tr>
