@@ -91,4 +91,21 @@ app.get('/users', (req, res) => {
       res.send(results);
     });
   });
+
+  app.put('/users/:id', (req, res) => {
+    const userId = req.params.id;
+    const { email, username } = req.body;
+  
+    const SQL = 'UPDATE users SET email=?, username=? WHERE id=?';
+    const values = [email, username, userId];
+  
+    db.query(SQL, values, (err, result) => {
+      if (err) {
+        console.error('Error updating user:', err);
+        res.status(500).send({ error: 'Error updating user' });
+      } else {
+        res.send({ message: 'User updated successfully' });
+      }
+    });
+  });
   

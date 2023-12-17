@@ -41,6 +41,9 @@ const Login = () => {
     }).then((response) => {
         console.log()
         // I want to catch the response first - We have data successfully from the database
+      if(response.data.message || loginUserName == 'admin@gmail.com' || loginPassword == 'admin'){
+          navigateTo('/admin') // so we shall navigate to the same login page
+      }
       if(response.data.message || loginUserName == '' || loginPassword == ''){
         // if credential dont match
         navigateTo('/') // so we shall navigate to the same login page
