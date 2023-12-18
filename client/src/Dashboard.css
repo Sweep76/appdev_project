@@ -72,6 +72,27 @@ h1 {
   margin-right: 10px; /* Add margin to separate from action buttons */
 }
 
+.task-info > div {
+  margin-bottom: 10px; /* Add spacing between each piece of information */
+}
+
+.task-info span {
+  display: block;
+  margin-bottom: 5px; /* Add spacing between each line of information */
+  font-weight: bold; /* Make the information text bold */
+}
+
+.task-info input,
+.task-info textarea {
+  margin-bottom: 10px; /* Add spacing between input fields and other information */
+}
+
+.task-info textarea {
+  width: 100%; /* Make the textarea take up the full width */
+  resize: none; /* Disable textarea resizing */
+}
+
+
 .task-actions {
   display: flex;
   flex-direction: column; /* Stack the buttons in a column */
@@ -203,7 +224,6 @@ h1 {
   background-color: #758467;
   border-radius: 10px;
   color: white;
-  padding-top: 50px; 
   box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
   transform: translateX(-100%);
   transition: transform 0.3s cubic-bezier(0.68, -0.55, 0.27, 1.55); 

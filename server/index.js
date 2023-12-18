@@ -126,24 +126,63 @@ app.delete('/users/:id', (req, res) => {
       }
     });
   });
-
-  // ... (existing code)
-
-// Fetch all tasks
-// Add this route to fetch tasks from the database
-app.get('/tasks', (req, res) => {
-    const SQL = 'SELECT * FROM task';
   
-    db.query(SQL, (err, results) => {
+
+// Fetch tasks for a specific user
+app.get('/tasks/:userID', (req, res) => {
+  const userID = req.params.userID;
+  const SQL = 'SELECT * FROM task WHERE userID = ?';
+
+  db.query(SQL, [userID], (err, results) => {
       if (err) {
-        console.error('Error fetching tasks:', err);
-        res.status(500).send({ error: 'Error fetching tasks' });
+          console.error('Error fetching tasks:', err);
+          res.status(500).send({ error: 'Error fetching tasks' });
       } else {
-        res.send(results);
+          res.send(results);
       }
-    });
   });
-  
+});
+
+// getting the username given a userID passed from login
+app.get('/users/:userID', (req, res) => {
+  const userID = req.params.userID;
+
+  const SQL = 'SELECT * FROM users WHERE id=?';
+  const values = [userID];
+
+  db.query(SQL, values, (err, results) => {
+      if (err) {
+          console.error('Error fetching user data:', err);
+          res.status(500).send({ error: 'Error fetching user data' });
+      } else {
+          console.log('User data fetched successfully!');
+          res.send(results[0]); // Assuming there's only one user with the given ID
+      }
+  });
+});  
+
+// Create a new task
+app.post('/tasks', (req, res) => {
+  const { userID, taskName, taskDate, task_Desc, customerName } = req.body;
+
+  // Check if all required fields are provided
+  if (!userID || !taskName || !taskDate || !task_Desc || !customerName) {
+    return res.status(400).send({ error: 'All fields are required' });
+  }
+
+  const SQL = 'INSERT INTO tasks (userID, taskName, taskDate, task_Desc, customerName) VALUES (?,?,?,?,?)';
+  const values = [userID, taskName, taskDate, task_Desc, customerName];
+
+  db.query(SQL, values, (err, result) => {
+    if (err) {
+      console.error('Error adding task:', err);
+      res.status(500).send({ error: 'Error adding task to the database' });
+    } else {
+      res.send({ message: 'Task added successfully', taskID: result.insertId });
+    }
+  });
+});
+
   
   // Update a task
   app.put('/tasks/:id', (req, res) => {
@@ -164,24 +203,24 @@ app.get('/tasks', (req, res) => {
     });
   });
   
-  // Delete a task
-  app.delete('/tasks/:id', (req, res) => {
-    const taskId = req.params.id;
-  
-    const SQL = 'DELETE FROM tasks WHERE taskID=?';
-    const values = [taskId];
-  
-    db.query(SQL, values, (err, result) => {
+  // Delete a task 
+app.delete('/tasks/:id', (req, res) => {
+  const taskId = req.params.id;
+
+  const SQL = 'DELETE FROM tasks WHERE taskID=?';
+  const values = [taskId];
+
+  db.query(SQL, values, (err, result) => {
       if (err) {
-        console.error('Error deleting task:', err);
-        res.status(500).send({ error: 'Error deleting task' });
+          console.error('Error deleting task:', err);
+          res.status(500).send({ error: 'Error deleting task' });
       } else {
-        res.send({ message: 'Task deleted successfully' });
+          console.log('Task deleted successfully!');
+          res.send({ message: 'Task deleted successfully' });
       }
-    });
   });
-  
-  // ... (existing code)
-  
+});
+
+
   
   
