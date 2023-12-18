@@ -250,19 +250,21 @@ app.put('/tasks/:id', (req, res) => {
   });
 });
 
-// Delete a task
-app.delete('/tasks/:id', (req, res) => {
-  const taskId = req.params.id;
+  // Delete a task 
+  app.delete('/tasks/:id', (req, res) => {
+    const taskId = req.params.id;
 
-  const SQL = 'DELETE FROM tasks WHERE taskID=?';
-  const values = [taskId];
+    const SQL = 'DELETE FROM task WHERE taskID=?';
+    const values = [taskId];
 
-  db.query(SQL, values, (err, result) => {
-    if (err) {
-      console.error('Error deleting task:', err);
-      res.status(500).send({ error: 'Error deleting task' });
-    } else {
-      res.send({ message: 'Task deleted successfully' });
-    }
+    db.query(SQL, values, (err, result) => {
+        if (err) {
+            console.error('Error deleting task:', err);
+            res.status(500).send({ error: 'Error deleting task' });
+        } else {
+            console.log('Task deleted successfully!');
+            res.send({ message: 'Task deleted successfully' });
+        }
+    });
   });
-});
+
