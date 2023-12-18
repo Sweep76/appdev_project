@@ -74,12 +74,15 @@ function Dashboard() {
       customerName: '',
     });
   };
-  
 
 
   const addTaskToDatabase = async (taskData) => {
     try {
-      const response = await axios.post('http://localhost:3002/tasks', taskData);
+      console.log('userID:', userID);
+console.log('taskData:', taskData);
+      const response = await axios.post(`http://localhost:3002/tasks/${userID}`, taskData);
+
+
       console.log(response.data);
     } catch (error) {
       console.error('Error adding task to database:', error);
@@ -161,7 +164,7 @@ function Dashboard() {
   };
   
 
-  const addTask = () => {
+  const addTask = async () => {
     if (newTaskName.trim() !== '') {
       const newTaskData = {
         userID: userID,
@@ -171,21 +174,25 @@ function Dashboard() {
         customerName: newCustomerName,
       };
   
-      // Add the task to the database
-      addTaskToDatabase(newTaskData);
+      try {
+        // Add the task to the database
+        await addTaskToDatabase(newTaskData);
   
-      // Update the local state (if needed)
-      const updatedTasks = [...tasks, newTaskData];
-      setTasks(updatedTasks);
+        // Update the local state (if needed)
+        const updatedTasks = [...tasks, newTaskData];
+        setTasks(updatedTasks);
   
-      // Reset input values
-      setNewTaskName('');
-      setNewTaskDesc('');
-      setNewTaskDate('');
-      setNewCustomerName('');
+        // Reset input values
+        setNewTaskName('');
+        setNewTaskDesc('');
+        setNewTaskDate('');
+        setNewCustomerName('');
+      } catch (error) {
+        console.error('Error adding task:', error);
+      }
+      closeAddModal();
     }
-    closeAddModal();
-  };
+  }; 
   
 
   const cancelDelete = () => {

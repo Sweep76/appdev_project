@@ -161,8 +161,9 @@ app.get('/users/:userID', (req, res) => {
   });
 });  
 
+
 // Create a new task
-app.post('/tasks', (req, res) => {
+app.post('/tasks/:userID', (req, res) => {
   const { userID, taskName, taskDate, task_Desc, customerName } = req.body;
 
   // Check if all required fields are provided
@@ -170,7 +171,7 @@ app.post('/tasks', (req, res) => {
     return res.status(400).send({ error: 'All fields are required' });
   }
 
-  const SQL = 'INSERT INTO tasks (userID, taskName, taskDate, task_Desc, customerName) VALUES (?,?,?,?,?)';
+  const SQL = 'INSERT INTO task (userID, taskName, taskDate, task_Desc, customerName) VALUES (?,?,?,?,?)';
   const values = [userID, taskName, taskDate, task_Desc, customerName];
 
   db.query(SQL, values, (err, result) => {
@@ -189,7 +190,7 @@ app.post('/tasks', (req, res) => {
     const taskId = req.params.id;
     const { taskName, taskDate, task_Desc, customerName } = req.body;
   
-    const SQL = 'UPDATE tasks SET taskName=?, taskDate=?, task_Desc=?, customerName=? WHERE taskID=?';
+    const SQL = 'UPDATE task SET taskName=?, taskDate=?, task_Desc=?, customerName=? WHERE taskID=?';
     const values = [taskName, taskDate, task_Desc, customerName, taskId];
   
     db.query(SQL, values, (err, result) => {
@@ -207,7 +208,7 @@ app.post('/tasks', (req, res) => {
 app.delete('/tasks/:id', (req, res) => {
   const taskId = req.params.id;
 
-  const SQL = 'DELETE FROM tasks WHERE taskID=?';
+  const SQL = 'DELETE FROM task WHERE taskID=?';
   const values = [taskId];
 
   db.query(SQL, values, (err, result) => {
