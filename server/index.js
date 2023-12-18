@@ -78,7 +78,6 @@ app.post('/login', (req, res) => {
 })
 
 // Backend for Admin privilges for Edit and Deletion of Users
-
 app.get('/users', (req, res) => {
     const SQL = 'SELECT * FROM users';
   
@@ -127,6 +126,19 @@ app.delete('/users/:id', (req, res) => {
     });
   });
   
+// fetching all tasks for admin page
+app.get('/tasks', (req, res) => {
+  const SQL = 'SELECT * FROM task';
+
+  db.query(SQL, (err, results) => {
+    if (err) {
+      console.error('Error fetching tasks:', err);
+      res.status(500).send({ error: 'Error fetching tasks' });
+    } else {
+      res.send(results);
+    }
+  });
+});
 
 // Fetch tasks for a specific user
 app.get('/tasks/:userID', (req, res) => {
