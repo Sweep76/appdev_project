@@ -142,25 +142,29 @@ console.log('taskData:', taskData);
   const saveTask = (index) => {
     const taskId = tasks[index].taskID;
     const updatedTaskData = {
-      taskName: editedTaskName,
-      taskDate: editedTaskDate,
-      task_Desc: editedTaskDesc,
-      customerName: editedCustomerName,
+      taskName: editedTaskDetails.name,
+      taskDate: editedTaskDetails.date,
+      task_Desc: editedTaskDetails.description,
+      customerName: editedTaskDetails.customerName,
     };
-
+  
     // Update the task in the database
     updateTaskInDatabase(taskId, updatedTaskData);
-
+  
     // Update the local state (if needed)
     const updatedTasks = [...tasks];
     updatedTasks[index] = { ...updatedTasks[index], ...updatedTaskData };
     setTasks(updatedTasks);
-
+  
     // Reset the edited task variables
-    setEditedTaskName('');
-    setEditedTaskDate('');
-    setEditedTaskDesc('');
-    setEditedCustomerName('');
+    setEditingIndex(null);
+    setIsEditModalOpen(false);
+    setEditedTaskDetails({
+      name: '',
+      description: '',
+      date: '',
+      customerName: '',
+    });
   };
   
 
