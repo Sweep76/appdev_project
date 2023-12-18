@@ -223,5 +223,53 @@ app.delete('/tasks/:id', (req, res) => {
 });
 
 
-  
+app.get('/tasks', (req, res) => {
+  const SQL = 'SELECT * FROM task';
+
+  db.query(SQL, (err, results) => {
+    if (err) {
+      console.error('Error fetching tasks:', err);
+      res.status(500).send({ error: 'Error fetching tasks' });
+    } else {
+      res.send(results);
+    }
+  });
+});
+
+
+// Update a task
+app.put('/tasks/:id', (req, res) => {
+  const taskId = req.params.id;
+  const { taskName, taskDate, task_Desc, customerName } = req.body;
+
+  const SQL = 'UPDATE tasks SET taskName=?, taskDate=?, task_Desc=?, customerName=? WHERE taskID=?';
+  const values = [taskName, taskDate, task_Desc, customerName, taskId];
+
+  db.query(SQL, values, (err, result) => {
+    if (err) {
+      console.error('Error updating task:', err);
+      res.status(500).send({ error: 'Error updating task' });
+    } else {
+      res.send({ message: 'Task updated successfully' });
+      console.log('Task updated successfully!');
+    }
+  });
+});
+
+// Delete a task
+app.delete('/tasks/:id', (req, res) => {
+  const taskId = req.params.id;
+
+  const SQL = 'DELETE FROM tasks WHERE taskID=?';
+  const values = [taskId];
+
+  db.query(SQL, values, (err, result) => {
+    if (err) {
+      console.error('Error deleting task:', err);
+      res.status(500).send({ error: 'Error deleting task' });
+    } else {
+      res.send({ message: 'Task deleted successfully' });
+    }
+  });
+});  
   
