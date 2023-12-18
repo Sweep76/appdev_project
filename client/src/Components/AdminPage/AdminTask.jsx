@@ -132,35 +132,41 @@ const AdminTask = () => {
         isOpen={isModalOpen}
         onRequestClose={closeModal}
         contentLabel="Edit Task Modal"
-        className="edit-modal"
+        className="edit2-modal"
       >
-        <h3>Edit Task</h3>
-        <label>Task Name:</label>
-        <input
-          type="text"
-          value={editedTaskName}
-          onChange={(e) => setEditedTaskName(e.target.value)}
-        />
-        <label>Task Date:</label>
-        <input
-          type="date"
-          value={editedTaskDate}
-          onChange={(e) => setEditedTaskDate(e.target.value)}
-        />
-        <label>Task Description:</label>
-        <input
-          type="text"
-          value={editedTaskDesc}
-          onChange={(e) => setEditedTaskDesc(e.target.value)}
-        />
-        <label>Customer Name:</label>
-        <input
-          type="text"
-          value={editedCustomerName}
-          onChange={(e) => setEditedCustomerName(e.target.value)}
-        />
-        <button onClick={saveEdit}>Save</button>
-        <button onClick={closeModal}>Cancel</button>
+        <div className="edit-user-form">
+          <h3>Edit Task</h3>
+          <label>Task Name:</label>
+          <input
+            type="text"
+            value={editedTaskName}
+            onChange={(e) => setEditedTaskName(e.target.value)}
+          />
+          <label>Task Date:</label>
+          <input
+            type="date"
+            value={editedTaskDate}
+            onChange={(e) => setEditedTaskDate(e.target.value)}
+          />
+          <label>Task Description:</label>
+          <input
+            type="text"
+            value={editedTaskDesc}
+            onChange={(e) => setEditedTaskDesc(e.target.value)}
+          />
+          <label>Customer Name:</label>
+          <input
+            type="text"
+            value={editedCustomerName}
+            onChange={(e) => setEditedCustomerName(e.target.value)}
+          />
+          <button className="save-btn" onClick={saveEdit}>
+            Save
+          </button>
+          <button className="cancel-btn" onClick={closeModal}>
+            Cancel
+          </button>
+        </div>
       </Modal>
     </div>
   );

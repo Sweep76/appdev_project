@@ -117,12 +117,14 @@ const AdminPage = () => {
       </table>
 
       {/* Modal for Editing User Credentials */}
-      <Modal
-        isOpen={isModalOpen}
-        onRequestClose={closeModal}
-        contentLabel="Edit User Modal"
-        className="edit-modal"
-      >
+
+    <Modal
+      isOpen={isModalOpen}
+      onRequestClose={closeModal}
+      contentLabel="Edit User Modal"
+      className="edit-modal"
+    >
+      <div className="edit-user-form">
         <h3>Edit User</h3>
         <label>Email:</label>
         <input
@@ -142,9 +144,17 @@ const AdminPage = () => {
           value={editedPassword}
           onChange={(e) => setEditedPassword(e.target.value)}
         />
-        <button onClick={saveEdit}>Save</button>
-        <button onClick={closeModal}>Cancel</button>
-      </Modal>
+        <div className="button-group">
+          <button className="save-btn" onClick={saveEdit}>
+            Save
+          </button>
+          <button className="cancel-btn" onClick={closeModal}>
+            Cancel
+          </button>
+        </div>
+      </div>
+    </Modal>
+
     </div>
   );
 };
