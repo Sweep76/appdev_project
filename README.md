@@ -1,4 +1,4 @@
-# TASKIFY 3105 - MANAGEMENT TOOL  README
+# TASKIFY 3105 - MANAGEMENT TOOL  README documentation
 
 ## Guide to using this webapp
 
