@@ -7,6 +7,7 @@
 
 ## Important Links
 1. [Wireframe Layouts](https://www.canva.com/design/DAFviR_rW6U/mqIVP5XNTGd6a58WfAulXQ/edit)
+2. [Document Link](https://docs.google.com/document/d/15CdN_Qth1j66ONtJVBoartt0tCjh-AkMDqQuCQMUhMo/edit?usp=sharing)
 
 ### Setting Up the Project
 1. Clone the project in your local directory of choice. Example using the git CLI:
